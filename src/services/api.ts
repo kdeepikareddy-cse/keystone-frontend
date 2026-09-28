@@ -1,5 +1,4 @@
- 
-const API_BASE_URL = 'http://localhost:8080/api'
+const API_BASE_URL = 'https://keystone-backend-vldl.onrender.com/api'
 
 function getAuthHeaders() {
   const token = localStorage.getItem('token')
@@ -16,9 +15,7 @@ export async function getWorkOrders() {
   })
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to fetch work orders: ${response.status}`,
-    )
+    throw new Error(`Failed to fetch work orders: ${response.status}`)
   }
 
   return response.json()
@@ -30,9 +27,7 @@ export async function getTechnicians() {
   })
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to fetch technicians: ${response.status}`,
-    )
+    throw new Error(`Failed to fetch technicians: ${response.status}`)
   }
 
   return response.json()
@@ -52,9 +47,7 @@ export async function createWorkOrder(workOrder: {
   })
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to create work order: ${response.status}`,
-    )
+    throw new Error(`Failed to create work order: ${response.status}`)
   }
 
   return response.json()
@@ -73,9 +66,7 @@ export async function createTechnician(technician: {
   })
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to create technician: ${response.status}`,
-    )
+    throw new Error(`Failed to create technician: ${response.status}`)
   }
 
   return response.json()
@@ -90,16 +81,12 @@ export async function updateWorkOrderStatus(
     {
       method: 'PUT',
       headers: getAuthHeaders(),
-      body: JSON.stringify({
-        status: status,
-      }),
+      body: JSON.stringify({ status }),
     },
   )
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to update work order: ${response.status}`,
-    )
+    throw new Error(`Failed to update work order: ${response.status}`)
   }
 
   return response.json()
@@ -118,9 +105,7 @@ export async function assignTechnician(
   )
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to assign technician: ${response.status}`,
-    )
+    throw new Error(`Failed to assign technician: ${response.status}`)
   }
 
   return response.json()
@@ -147,7 +132,6 @@ export async function updateTechnicianStatus(
   return response.json()
 }
 
-// Update complete work order
 export async function updateWorkOrder(
   id: number,
   workOrder: {
@@ -168,15 +152,12 @@ export async function updateWorkOrder(
   )
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to update work order: ${response.status}`,
-    )
+    throw new Error(`Failed to update work order: ${response.status}`)
   }
 
   return response.json()
 }
 
-// Delete work order
 export async function deleteWorkOrder(id: number) {
   const response = await fetch(
     `${API_BASE_URL}/work-orders/${id}`,
@@ -187,14 +168,12 @@ export async function deleteWorkOrder(id: number) {
   )
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to delete work order: ${response.status}`,
-    )
+    throw new Error(`Failed to delete work order: ${response.status}`)
   }
 
   return response.text()
 }
-// Delete technician
+
 export async function deleteTechnician(id: number) {
   const response = await fetch(
     `${API_BASE_URL}/technicians/${id}`,
@@ -205,11 +184,8 @@ export async function deleteTechnician(id: number) {
   )
 
   if (!response.ok) {
-    throw new Error(
-      `Failed to delete technician: ${response.status}`,
-    )
+    throw new Error(`Failed to delete technician: ${response.status}`)
   }
 
   return response.text()
 }
-
