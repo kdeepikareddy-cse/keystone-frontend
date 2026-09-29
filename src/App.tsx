@@ -1124,6 +1124,94 @@ async function handleEditWorkOrder(
     </button>
   </div>
 )}
+{userRole === 'TECHNICIAN' && (
+  <div
+    style={{
+      marginTop: '12px',
+      padding: '12px',
+      borderRadius: '8px',
+      background: '#f8fafc',
+      border: '1px solid #e2e8f0',
+    }}
+  >
+    <div
+      style={{
+        fontSize: '12px',
+        fontWeight: '600',
+        color: '#64748b',
+        marginBottom: '8px',
+      }}
+    >
+      Work Order Actions
+    </div>
+
+    <div
+      style={{
+        display: 'flex',
+        gap: '8px',
+        flexWrap: 'wrap',
+      }}
+    >
+      {workOrder.status !== 'IN PROGRESS' &&
+        workOrder.status !== 'CLOSED' && (
+          <button
+            onClick={() =>
+              handleStatusChange(
+                workOrder.id,
+                'IN PROGRESS',
+              )
+            }
+            style={{
+              padding: '7px 12px',
+              borderRadius: '7px',
+              border: 'none',
+              background: '#2563eb',
+              color: 'white',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+            }}
+          >
+            Start Work
+          </button>
+        )}
+
+      {workOrder.status === 'IN PROGRESS' && (
+        <button
+          onClick={() =>
+            handleStatusChange(
+              workOrder.id,
+              'CLOSED',
+            )
+          }
+          style={{
+            padding: '7px 12px',
+            borderRadius: '7px',
+            border: 'none',
+            background: '#16a34a',
+            color: 'white',
+            cursor: 'pointer',
+            fontWeight: 'bold',
+          }}
+        >
+          Mark Closed
+        </button>
+      )}
+
+      <span
+        style={{
+          padding: '7px 12px',
+          borderRadius: '7px',
+          background: '#e2e8f0',
+          color: '#334155',
+          fontSize: '13px',
+          fontWeight: '600',
+        }}
+      >
+        Status: {workOrder.status}
+      </span>
+    </div>
+  </div>
+)}
                       <div className="order-info">
 
                         <span className="priority">
